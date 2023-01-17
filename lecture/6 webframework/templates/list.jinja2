@@ -1,0 +1,11 @@
+<ul>
+    {% for news in news_list %}
+    <li>
+            <h3>
+                <a href="pages/{{news.number}}">
+                    {{news.ru_title}}
+                </a>
+            </h3>
+        </li>
+    {% endfor %}
+    </ul>

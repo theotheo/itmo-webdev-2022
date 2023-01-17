@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Date</title>
+</head>
+ 
+<body>
+    <div id="timer"></div>
+</body>
+
+<script>
+    var timerEl = document.querySelector('#timer') // как css-селекторы
+
+    // определение нашей функции
+    function updateTimer() {
+        var now = new Date()
+        var text = `Сегодня: ${now}`
+        timerEl.innerHTML = text // меня текст у элемента
+    }
+
+    updateTimer() // вызов нашей функции
+    // вызов будет произведен единожды при открытии страницы
+    
+</script>
+</html>

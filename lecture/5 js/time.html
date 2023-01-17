@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Date</title>
+</head>
+ 
+<body>
+    <div id="timer"></div>
+</body>
+
+
+<script>
+    var now = new Date() 
+    var text = `<h1>Сегодня: ${now} </h1>` // интерполяция строк (похоже на f-string в питоне)
+    var timerEl = document.querySelector('#timer') // как css-селекторы
+    timerEl.innerHTML = text
+</script>
+</html>

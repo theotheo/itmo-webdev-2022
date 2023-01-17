@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+<div class="header"><div class="header-title">Сhinews</div></div>
+
+<ul>
+    {% for news in news_list %}
+    <li>
+            <h3>
+                <a href="pages/{{news.number}}">
+                    {{news.ru_title}}
+                </a>
+            </h3>
+        </li>
+    {% endfor %}
+    </ul>
+ 
+<button>Загрузить еще</button>
+
+<script>
+    const body = document.querySelector('body') // как css-селекторы (по id)
+    const btn = document.querySelector('button') // как css-селектор (по имени тега)
+    var offset = 10
+
+
+    // определение функции
+    function addNews() {
+        // 1. Создаём новый XMLHttpRequest-объект
+        var xhr = new XMLHttpRequest();
+
+        // 2. Настраиваем его: GET-запрос по URL /article/.../load
+        xhr.open('GET', `api/list?offset=${offset}`);
+
+        // 3. Отсылаем запрос
+        xhr.send();
+
+        // 4. Этот код сработает после того, как мы получим ответ сервера
+        xhr.onload = function() {
+            if (xhr.status == 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+                var div = document.createElement("div")
+                div.innerHTML = xhr.response
+                body.insertBefore(div, btn) // добавляет текст
+                offset += 10 
+            } 
+        };
+    }
+
+    // добавляет callback
+    btn.addEventListener('click', addNews)
+
+</script>
+
+<style>
+body {
+    padding: 0;
+    margin: 8px;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  
+  a:link {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #828282;
+    text-decoration: none;
+  }
+  
+  
+  .header {
+    background-color: #ff1100;
+    white-space: nowrap;
+    padding: 1.5rem;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+  
+  .header-title {
+    font-weight: 700;
+    margin-left: 0.25rem;
+    margin-right: 5px;
+    color: black;
+    text-decoration: none;
+    font-size: 3.0rem;
+  }
+  
+  ul {
+      margin: 20px;
+  }
+  
+  li {
+      list-style-type: trad-chinese-informal;
+  }
+</style>
+</body>
+</html>

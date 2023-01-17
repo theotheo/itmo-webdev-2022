@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Date</title>
+</head>
+ 
+<body>
+    <button>Обновить таймер</button>
+    <div id="timer"></div>
+</body>
+
+<script>
+    const timerEl = document.querySelector('#timer') // как css-селекторы (по id)
+    const btn = document.querySelector('button') // как css-селектор (по имени тега)
+    
+    // определение нашей функции
+    function updateTimer() {
+        var now = new Date()
+        var text = `Сегодня: ${now}`
+        timerEl.innerHTML = text // меня текст у элемента
+    }
+
+    // добавляет callback
+    btn.addEventListener('click', updateTimer)
+
+</script>
+</html>
